@@ -1,0 +1,47 @@
+In this homework, you will implement CSV and JSON readers/writers using the C++ Standard
+Library.
+CSV and JSON readers/writers are essential tools for data scientists. They provide
+functionality to efficiently read and write data, simplifying data analysis and processing tasks.
+Data scientists often use CSV or JSON formatted files to collect data from various sources,
+analyze it, and visualize it. These file formats make it easy to store and share data while
+preserving its structure.
+In your implementation, you will extensively use data structures and fuctions in the C++
+Standard Library. This will help you master various functionalities in this library, such as I/O
+streams and containers. Such experiences enhance C++ programming skills and provide the
+necessary techniques for data processing.
+The goal of this homework is twofold:
+(1) Learn to parse and write CSV/JSON data
+(2) Learn to use various data structures and functions in the C++ Standard Library.
+
+1. CSV Parser [50pts]
+
+Implement CSV parsing functions that print the statistics of the data stored in a CSV (comma-
+separated values) file. Include your implementation in the functions.cpp file. You can
+
+modify other files (e.g., main.cpp) for your own use, but they will not be included in the
+grading process.
+
+Instruction
+The CSV file is structured as follows:
+- The first line of the file serves as the header for column names, with subsequent lines
+containing data rows.
+- All column names are unique.
+(a) [10pts] Complete the ParseCSV function, which parses a CSV file and stores the column
+names and values in containers. The function takes three arguments: the input CSV filename,
+header_cols, and data_map. ParseCSV parses the contents of the CSV file to store them
+into the empty map data_map. Each key-value pair in data_map is constructed as [column
+name] – [column values] in the CSV file, with column values stored in a vector container. An
+
+example below illustrates how data_map is constructed. Additionally, update the empty map
+header_cols with keys being the zero-based indices of the column names (i.e., 0, 1, 2, and
+so on) and values being the corresponding column names in the same order as in the CSV
+file. To test the ParseCSV function with main.cpp, you may execute it with ‘a’ as the first
+command-line argument and the input CSV filename as the second command-line argument.
+
+Please note that the input CSV file could include some dirty rows. Follow the rules below to
+deal with them:
+- If the data row has a different number of elements than the header, ignore the row.
+- If an element is enclosed by double quotes (") in the CSV file, any commas inside the
+double quotes are not considered as delimiters. When an element is enclosed by
+double quotes ("), the double quotes should also be kept in data_map.
+- If any element of the data row is empty, ignore the row.
