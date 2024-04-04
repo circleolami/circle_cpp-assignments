@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
             return -1;
         }
 
-        // 추가한 부분 - 결과 출력 
+        // 추가한 부분
         cout << "[header_cols is constructed as below]" << endl;
         cout << "{";
         for (auto it = header_cols.begin(); it != header_cols.end(); ) {
@@ -55,20 +55,51 @@ int main(int argc, char *argv[]) {
             return -1;
         }
 
-    } else if (prob_no == "c") {
-        if (argc != 5) {
-            cout << "Please check your command line arguments, Problem c requires four command line arguments: [Problem no.] [CSV file name] [Key column name] [Value column name]" << endl;
-            return -1;
-        }
+        // 추가한 부분
+        string target_column = argv[3];
+        int sum = SumColumn(target_column, data_map);
 
-
-    } else if (prob_no == "d") {
-        if (argc != 6) {
-            cout << "Please check your command line arguments, Problem d requires five command line arguments: [Problem no.] [CSV file name] [Value column name1] [Value column name2] [Output file name]" << endl;
-            return -1;
-        }
-
+        // 합계를 지정된 형식으로 출력
+        cout << "SumColumn(\"" << target_column << "\", data_map)" << endl;
+        cout << ">>> " << sum << endl;
     }
+
+    else if (prob_no == "c") {
+    if (argc != 5) {
+        cout << "Please check your command line arguments, Problem c requires four command line arguments: [Problem no.] [CSV file name] [Key column name] [Value column name]" << endl;
+        return -1;
+    }
+
+    // 추가한 부분
+    string key_column = argv[3];
+    string value_column = argv[4];
+
+    // FilterMostFrequentAvg 함수를 호출하여 결과를 계산
+    double avg = FilterMostFrequentAvg(key_column, value_column, data_map);
+
+    // 결과를 지정된 형식으로 출력
+    cout << "FilterMostFrequentAvg (\"" << key_column << "\", \"" << value_column << "\", data_map)" << endl;
+    cout << ">>> " << avg << endl;
+}
+
+
+ else if (prob_no == "d") {
+    if (argc != 6) {
+        cout << "Please check your command line arguments, Problem d requires five command line arguments: [Problem no.] [CSV file name] [Value column name1] [Value column name2] [Output file name]" << endl;
+        return -1;
+    }
+
+    // 추가한 부분
+    string value_col1 = argv[3];
+    string value_col2 = argv[4];
+    string out_filename = argv[5];
+
+    // SumTwoColumns 함수를 호출하여 두 열의 값을 합산하고 결과를 새 CSV 파일에 작성 
+    SumTwoColumns(value_col1, value_col2, out_filename, header_cols, data_map);
+
+    cout << "The output CSV file '" << out_filename << "' has been created." << endl;
+}
+
     
     return 0;
 }
